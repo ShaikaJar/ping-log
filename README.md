@@ -7,7 +7,17 @@ You can download the repository as a zip and unpack it or just clone it with:
 ```
 git clone https://github.com/ShaikaJar/ping-log.git
 ```  
-The following commands should be run from the Terminal inside the new **ping-log** directory.
+Open the new folder with:
+```
+cd ping-log
+```  
+
+You then have to make the scripts executable with:
+
+```
+chmod u+x ./start.sh
+chmod u+x ./start-show.sh
+``` 
 
 #### Logging
 You can start a new [screen](https://help.ubuntu.com/community/Screen) that logs ping-results with:   
