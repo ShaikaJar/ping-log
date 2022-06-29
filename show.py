@@ -30,7 +30,7 @@ def plot(data: dict, file:str = "test.png", figsize=(10,3)):
 
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%d.%m. %Hh"))
 
-    ax.set(xlabel=str(len(labels)) + " Messpunkte", ylabel='ping (ms)', title='Ausfälle')
+    ax.set(xlabel=str(len(labels)) + " Time", ylabel='disconnected time\n/total time', title='Disconnection-Rate')
     # ax.set_xticks()
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
 
