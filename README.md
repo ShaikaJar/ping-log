@@ -1,5 +1,5 @@
 # ping-log
-very simple programm to log ping-reply-times
+A very simple program to log ping-reply-times
 
 # Get Started  
 #### Installation  
