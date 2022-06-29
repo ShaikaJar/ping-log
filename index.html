@@ -6,7 +6,7 @@
 </head>
 <body>
 <img id="refresh" alt=""
-     onload="javascript:(function(){setTimeout(function(){document.getElementById('refresh').src=document.getElementById('refresh').src.split('?')[0]+'?time='+new Date().getTime();},30);}())"
+     onload="javascript:(function(){setTimeout(function(){document.getElementById('refresh').src=document.getElementById('refresh').src.split('?')[0]+'?time='+new Date().getTime();},30*1000);}())"
      src="test.png" />
 </body>
 </html>
