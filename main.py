@@ -1,3 +1,4 @@
+import os
 import time
 
 import subprocess
@@ -19,7 +20,8 @@ def ping():
 
 logging.basicConfig(filename="ping.log", level=logging.DEBUG, format='%(asctime)s;%(message)s', datefmt="%d.%m.%Y %H:%M:%S", filemode='a+')
 
-
+if not os.path.isdir("backup"):
+    os.mkdir("backup")
 
 while True:
     t = ping()
