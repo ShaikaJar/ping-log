@@ -1,14 +1,14 @@
 # ping-log
 very simple programm to log ping-reply-times
 
-# Get Started
-Just download the Repository and start the scripts as described in [Usage](#usage)  
-To download the Repo you can use:  
+# Get Started  
+#### Installation  
+You can download the repository as a zip and unpack it or just clone it with:
 ```
 git clone https://github.com/ShaikaJar/ping-log.git
 ```  
+The following commands should be run from the Terminal inside the new **ping-log** directory.
 
-# Usage 
 #### Logging
 You can start a new [screen](https://help.ubuntu.com/community/Screen) that logs ping-results with:   
 ```
