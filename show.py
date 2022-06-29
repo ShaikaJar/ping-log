@@ -16,8 +16,6 @@ def plot(data: dict, file:str = "test.png", figsize=(10,3)):
     values = []
     for key in data.keys():
         date = parser.parse(key, dayfirst=True)
-        if date.month != 2:
-            print(date.strftime("%d.%m.%Y %H:%M:%S"))
         labels.append(date)
         values.append(data[key])
 

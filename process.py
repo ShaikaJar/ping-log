@@ -58,12 +58,12 @@ def get_data(filename: str, fill_in_minutes: int = 1, ping:bool=False, max_minut
 
 
             ago = (datetime.datetime.now()-time).total_seconds()/60
-            print("Ago:",ago)
+            #print("Ago:",ago)
             if max_minutes_ago<=0 or ago<max_minutes_ago:
                 data[time.strftime("%d.%m.%Y %H:%M:%S")] = pingT
-                print("Added")
-            else:
-                print("Not Added")
+                #print("Added")
+            #else:
+                #print("Not Added")
             lastTime = time
         return data
 
