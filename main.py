@@ -29,7 +29,7 @@ class PingLogger:
     def gen_ping(self):
         while True:
             result = ping()
-            print('Returning', result)
+            #print('Returning', result)
             yield result
             time.sleep(10)
 
@@ -46,7 +46,7 @@ class PingLogger:
             if not os.path.isdir("backup"):
                 os.mkdir("backup")
             date = parser.parse(list(self.data.keys())[10000].split(";")[0], dayfirst=True)
-            print("Backing up")
+            #print("Backing up")
             old_timestamps = self.data.keys()[:10000]
             with open("./backup/ping_backup_" + date.strftime("%d.%m.%Y_%H-%M-%S") + ".log", 'w') as newFile:
                 for timestamp in old_timestamps:
@@ -64,7 +64,7 @@ class PingLogger:
             except Exception:
                 continue
 
-            print("Zeit", timing, "ms")
+            #print("Zeit", timing, "ms")
 
             message = timing
             if timing == -1:

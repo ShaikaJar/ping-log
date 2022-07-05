@@ -42,7 +42,7 @@ class DataProcessor:
             if not line:
                 continue
             entry = line.split(";")
-            print(entry[0])
+            #print(entry[0])
             time = parser.parse(entry[0], dayfirst=True)
             pingT = math.floor(float(entry[1]))
 
@@ -74,12 +74,12 @@ class DataProcessor:
                     pingT = 0
 
             ago = (datetime.datetime.now() - time).total_seconds() / 60
-            # print("Ago:",ago)
+            # #print("Ago:",ago)
             if self.max_minutes_ago <= 0 or ago < self.max_minutes_ago:
                 data[time.strftime("%d.%m.%Y %H:%M:%S")] = pingT
-                # print("Added")
+                # #print("Added")
             # else:
-            # print("Not Added")
+            # #print("Not Added")
             lastTime = time
 
         self.processed_data = data

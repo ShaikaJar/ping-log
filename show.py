@@ -52,7 +52,7 @@ class Plotter:
         while True:
             x = yield
             self._processor.process_raw_data(self._raw_data)
-            print('Plotting')
+            #print('Plotting')
             self.buff = plot(data=self._processor.avg_processed_data(self.average_minutes), file=None)
 
     def build_buf(self):
@@ -65,25 +65,26 @@ class Plotter:
         if 'fill_in_minutes' in args.keys():
             if self._processor.fill_in_minutes != int(args['fill_in_minutes']):
                 self._processor.fill_in_minutes = int(args['fill_in_minutes'])
-                print('fill_in_minutes Changed')
+                #print('fill_in_minutes Changed')
                 changed= True
         if 'show_milliseconds' in args.keys():
             if self._processor.show_milliseconds != int(args['show_milliseconds']):
                 self._processor.show_milliseconds = bool(args['show_milliseconds'])
-                print('show_milliseconds Changed')
+                #print('show_milliseconds Changed')
                 changed= True
         if 'max_minutes_ago' in args.keys():
             if self._processor.max_minutes_ago != int(args['max_minutes_ago']):
-                print('max_minutes_ago Changed', self._processor.max_minutes_ago , int(args['max_minutes_ago']))
+                #print('max_minutes_ago Changed', self._processor.max_minutes_ago , int(args['max_minutes_ago']))
                 self._processor.max_minutes_ago = int(args['max_minutes_ago'])
                 changed= True
         if 'average_minutes' in args.keys():
             if self.average_minutes != int(args['average_minutes']):
                 self.average_minutes = int(args['average_minutes'])
-                print('average_minutes Changed')
+                #print('average_minutes Changed')
                 changed= True
 
         if changed:
+            print('Args Changed')
             self.send_trigger()
 
     def get_buff(self):
@@ -132,37 +133,37 @@ def custom_formatter(x, pos):
 def plot(data: dict, file, figsize=(10, 3)):
     labels = []
     values = []
-    print('Getting Data')
+    #print('Getting Data')
     for key in data.keys():
         date = parser.parse(key, dayfirst=True)
         labels.append(date)
         values.append(data[key]*10)
 
-    print('Create Subplot')
+    #print('Create Subplot')
     fig, ax = plt.subplots(figsize=figsize)
-    print('Edit Axis')
+    #print('Edit Axis')
     ax.bar(labels, values, 1 / len(labels))
     ax.xaxis.set_major_locator(ticker.LinearLocator(30))
     ax.margins(x=0)
     ax.set_ylim(ymin=1, ymax=10)
 
-    print('Set Scale')
+    #print('Set Scale')
     ax.set_yscale("log")
 
-    print('Set Formatter')
+    #print('Set Formatter')
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%d.%m. %Hh"))
     #ax.yaxis.set_major_locator(ticker.LinearLocator(5))
     ax.yaxis.set_major_formatter(custom_formatter)
     ax.yaxis.set_minor_formatter(custom_formatter)
 
-    print('Set Label')
+    #print('Set Label')
     ax.set(xlabel=str(len(labels)) + " Samples", ylabel='disconnected time\n/total time', title='Disconnection-Rate')
     # ax.set_xticks()
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
 
     plt.tight_layout()
 
-    print('Export')
+    #print('Export')
     if file is None:
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
@@ -175,7 +176,7 @@ def plot(data: dict, file, figsize=(10, 3)):
 
 
 def start():
-    print("Serving")
+    #print("Serving")
     server_object = HTTPServer(server_address=('', 8042), RequestHandlerClass=Handler)
     server_object.serve_forever()
 
@@ -188,6 +189,6 @@ if __name__ == '__main__':
 
     logger.data = data_importer.raw_data
 
-    print('Creating Plotter')
+    #print('Creating Plotter')
     show = Plotter(logger)
     start()
