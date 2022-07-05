@@ -11,15 +11,9 @@ Open the new folder with:
 ```
 cd ping-log
 ```  
+From here you can eather choose to start the Programm [manually](https://github.com/ShaikaJar/ping-log#starting_manually) or install it as a [service](https://github.com/ShaikaJar/ping-log#creating_a_service)
 
-You then have to make the scripts executable with:
-
-```
-chmod u+x ./start.sh
-chmod u+x ./start-show.sh
-```
-
-#### Plotting  
+#### Starting manually  
 You can start the program with:
 ```
 python3 ./show.py
