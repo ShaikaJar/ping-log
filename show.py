@@ -55,22 +55,25 @@ class Plotter:
             self.send_trigger()
 
     def buidl_buf_gen(self):
+        self.buff_queque = multiprocessing.SimpleQueue()
         while True:
             #print("Wait for Signal")
             x = yield
             self._processor.process_raw_data(self._raw_data)
             # print('Plotting')
-            render_process = multiprocessing.Process(target=self.build_process)
+            render_process = multiprocessing.Process(target=self.build_process, args=(self,))
             render_process.start()
             render_process.join(timeout=self._max_render_timeout)
             render_process.terminate()
+            self.buff = self.buff_queque.get()
             if render_process.exitcode is None:
                 print('Aborted Rendering')
 
-    def build_process(self):
+    def build_process(self, real_self):
         print('Started Rendering')
-        self.buff=plot(data=self._processor.avg_processed_data(self.average_minutes), file=None)
+        buff = plot(data=real_self._processor.avg_processed_data(real_self.average_minutes), file=None)
         #time.sleep(self._max_render_timeout*2)
+        self.buff_queque.put(buff)
         print('Finished Rendering')
 
     def build_buf(self):
@@ -119,6 +122,9 @@ class Handler(CGIHTTPRequestHandler):
     def do_GET(self):
         if self.path.startswith('/test.png'):
             args = {}
+            print('Recieving Image-Call')
+
+            print('Checking for Args')
             try:
                 arg_list = self.path.split('?')[1].split('&')
                 for arg_string in arg_list:
@@ -127,6 +133,7 @@ class Handler(CGIHTTPRequestHandler):
             except Exception:
                 print('No Args')
 
+            print('Getting Buffer')
             global show
             content: bytes = show.get_buff()
             show.change_settings(args)
