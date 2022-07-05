@@ -65,9 +65,10 @@ class Plotter:
             render_process.start()
             render_process.join(timeout=self._max_render_timeout)
             render_process.terminate()
-            self.buff = self.buff_queque.get()
             if render_process.exitcode is None:
                 print('Aborted Rendering')
+            if not self.buff_queque.empty():
+                self.buff = self.buff_queque.get()
 
     def build_process(self, real_self):
         print('Started Rendering')
