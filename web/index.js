@@ -17,12 +17,11 @@ function replace_arg(arg_name, new_value) {
 }
 
 function rename_demo(hours){
-    console.log('Ranem')
     if (hours <= 24) {
         demo.innerHTML = hours + ' Stunden';
     } else {
         days = Math.floor(hours / 24)
-        demo.innerHTML = days + ' Tage';
+        demo.innerHTML = days + ' Tage und '+ (hours%24) +'Stunden';
     }
 }
 
