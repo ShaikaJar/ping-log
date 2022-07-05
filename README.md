@@ -11,7 +11,7 @@ Open the new folder with:
 ```
 cd ping-log
 ```  
-From here you can eather choose to start the Programm [manually](https://github.com/ShaikaJar/ping-log#starting_manually) or install it as a [service](https://github.com/ShaikaJar/ping-log#creating_a_service)
+From here you can eather choose to start the Programm [manually](https://github.com/ShaikaJar/ping-log#starting-manually) or install it as a [service](https://github.com/ShaikaJar/ping-log#creating-a-service)
 
 #### Starting manually  
 You can start the program with:
