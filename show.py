@@ -123,6 +123,7 @@ class Handler(CGIHTTPRequestHandler):
             except Exception:
                 print("Broken-Pipe")
         else:
+            self.path = '/web'+self.path
             super().do_GET()
 
 def custom_formatter(x, pos):
@@ -177,7 +178,7 @@ def plot(data: dict, file, figsize=(10, 3)):
 
 def start():
     #print("Serving")
-    server_object = HTTPServer(server_address=('', 8042), RequestHandlerClass=Handler)
+    server_object = HTTPServer(server_address=('', 8042),  RequestHandlerClass=Handler)
     server_object.serve_forever()
 
 
