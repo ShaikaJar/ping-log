@@ -58,3 +58,4 @@ async function voteLoop() {
         vote.click();
     }
 } 
+module.exports = voteLoop;
